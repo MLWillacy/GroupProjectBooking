@@ -324,7 +324,7 @@ namespace GroupProjectW
 
         private void readBookingsFromDatabase()
         {
-            string[] lines = File.ReadAllLines("Room" + mRoomSelected + ".txt");
+            string[] lines = File.ReadAllLines("Rooms/Room" + mRoomSelected + ".txt");
             int numWeeks = 3; //change after prototype phase
 
             for (int i = 1; i < numWeeks + 1; i++)
@@ -451,7 +451,7 @@ namespace GroupProjectW
         }
         private void saveToDataBase()
         {
-            string[] lines = File.ReadAllLines("Room" + mRoomSelected + ".txt");
+            string[] lines = File.ReadAllLines("Rooms/Room" + mRoomSelected + ".txt");
             int numWeeks = 3; //change after prototype phase
 
             for (int i = 1; i < numWeeks + 1; i++)
@@ -473,7 +473,7 @@ namespace GroupProjectW
                 }
             }
 
-            File.WriteAllLines("Room" + mRoomSelected + ".txt", lines);
+            File.WriteAllLines("Rooms/Room" + mRoomSelected + ".txt", lines);
 
         }
         #endregion
