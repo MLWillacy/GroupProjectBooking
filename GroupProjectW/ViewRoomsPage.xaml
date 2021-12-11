@@ -1,0 +1,42 @@
+﻿<Page x:Class="GroupProjectW.ViewRoomsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GroupProjectW"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ViewRoomsPage">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#FF14778D"></SolidColorBrush>
+        </Grid.Background>
+
+        <StackPanel  x:Name="UserIcon_Panel" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,0,0,0" HorizontalAlignment="Right" Width="100" Visibility="Visible" Background="#FF14778D">
+            <Button x:Name="UserIcon__Button" Click="UserIcon_Button_Clicked" Width="80" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                <StackPanel Height="80" Width="80">
+                    <Image x:Name="UserIcon_Image" Margin="0,0,0,0" Source="/Images/UserIcon.png" Height="70" Width="70"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="Logout__Button" Content="Logout"  Click="Logout_Button_Clicked" MinWidth="70" Background="WhiteSmoke" Margin="0,-5,0,0" HorizontalAlignment="Center" Visibility="Hidden" />
+        </StackPanel>
+        <Button x:Name="OpenTabs__Button" Click="OpenTabs_Button_Clicked" Width="50" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" BorderBrush="#FF14778D">
+            <StackPanel Height="50" Width="50">
+                <Image x:Name="OpenTabs_Image" Margin="0,5,0,0" Source="/Images/LightTabDrop.png" Height="50" Width="50"/>
+            </StackPanel>
+        </Button>
+        <Label x:Name="Title_Text" Content="View Rooms:" HorizontalAlignment="Center" FontSize="35" Foreground="White" Margin="0,5,0,0" VerticalAlignment="Top"/>
+        <StackPanel  x:Name="Tabs" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,0,0,0" HorizontalAlignment="Left"  Width="150" Visibility="Visible" Background="#FF146374">
+            <Button x:Name="CloseTabs__Button" Click="CloseTabs_Button_Clicked" Width="50" Background="#FF146374" Margin="0,5,0,0" HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" BorderBrush="#FF146374">
+                <StackPanel Height="50" Width="50">
+                    <Image x:Name="CloseTabs_Image" Margin="0,5,0,0" Source="/Images/DarkTabDrop.png" Height="50" Width="50"/>
+                </StackPanel>
+            </Button>
+            <Image x:Name="Logo_Image" Margin="0,20,0,0" Source="/Images/Logo.png"/>
+            <Button x:Name="MyBookings__Button" Content="My Bookings"  Click="MyBookings_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,20,0,0" HorizontalAlignment="Center" />
+            <Button x:Name="MakeBooking__Button" Content="Make Booking"  Click="MakeBooking_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" />
+            <Button x:Name="ViewRooms__Button" Content="View Rooms"  Click="ViewRooms_Button_Clicked" Width="120" Background="#FFBF9A1B" Margin="0,5,0,0" HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,188 @@
+﻿<Page x:Class="GroupProjectW.CurrentBookingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GroupProjectW"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CurrentBookingsPage">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#FF14778D"></SolidColorBrush>
+        </Grid.Background>
+        <StackPanel  x:Name="UserIcon_Panel" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,0,0,0" HorizontalAlignment="Right" Width="100" Visibility="Visible" Background="#FF14778D">
+            <Button x:Name="UserIcon__Button" Click="UserIcon_Button_Clicked" Width="80" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                <StackPanel Height="80" Width="80">
+                    <Image x:Name="UserIcon_Image" Margin="0,0,0,0" Source="/Images/UserIcon.png" Height="70" Width="70"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="Logout__Button" Content="Logout"  Click="Logout_Button_Clicked" MinWidth="70" Background="WhiteSmoke" Margin="0,-5,0,0" HorizontalAlignment="Center" Visibility="Hidden" />
+        </StackPanel>
+        <StackPanel x:Name="SelectDate_Panel" VerticalAlignment="Center" HorizontalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Visible">
+            <StackPanel x:Name="Dates" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="145">
+                <StackPanel x:Name="Corner_Buttons" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" MinHeight="40" Orientation="Horizontal">
+                    <Button x:Name="TimetableBack__Button" Content="back"  Click="timetableBack_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="Gray" MinHeight="40" />
+                    <Button x:Name="TimetableForward__Button" Content="next"  Click="timetableForward_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="Gray" MinHeight="40" />
+                </StackPanel>
+                <Label x:Name="Monday_Text" Content="Monday 6/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40"/>
+                <Label x:Name="Tuesday_Text" Content="Tuesday 7/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" MinHeight="40"/>
+                <Label x:Name="Wednesday_Text" Content="Wednesday 8/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" MinHeight="40"/>
+                <Label x:Name="Thursday_Text" Content="Thursday 9/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" MinHeight="40"/>
+                <Label x:Name="Friday_Text" Content="Friday 10/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40"/>
+                <Label x:Name="Saturday_Text" Content="Saturday 11/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40"/>
+                <Label x:Name="Sunday_Text" Content="Sunday 12/12/21:" HorizontalAlignment="Left" FontSize="15" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Nine_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Nine_Text" Content="9:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moNine__Button" Content=""  Click="moNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuNine__Button" Content=""  Click="tuNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weNine__Button" Content=""  Click="weNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thNine__Button" Content=""  Click="thNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frNine__Button" Content=""  Click="frNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saNine__Button" Content=""  Click="saNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suNine__Button" Content=""  Click="suNine_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Ten_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Ten_Text" Content="10:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moTen__Button" Content=""  Click="moTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuTen__Button" Content=""  Click="tuTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weTen__Button" Content=""  Click="weTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thTen__Button" Content=""  Click="thTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frTen__Button" Content=""  Click="frTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saTen__Button" Content=""  Click="saTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suTen__Button" Content=""  Click="suTen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Eleven_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Eleven_Text" Content="11:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moEleven__Button" Content=""  Click="moEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuEleven__Button" Content=""  Click="tuEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weEleven__Button" Content=""  Click="weEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thEleven__Button" Content=""  Click="thEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frEleven__Button" Content=""  Click="frEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saEleven__Button" Content=""  Click="saEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suEleven__Button" Content=""  Click="suEleven_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Twelve_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Twelve_Text" Content="12:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moTwelve__Button" Content=""  Click="moTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuTwelve__Button" Content=""  Click="tuTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weTwelve__Button" Content=""  Click="weTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thTwelve__Button" Content=""  Click="thTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frTwelve__Button" Content=""  Click="frTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saTwelve__Button" Content=""  Click="saTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suTwelve__Button" Content=""  Click="suTwelve_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Thirteen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Thirteen_Text" Content="13:00" HorizontalAlignment="Left"  Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moThirteen__Button" Content=""  Click="moThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuThirteen__Button" Content=""  Click="tuThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weThirteen__Button" Content=""  Click="weThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thThirteen__Button" Content=""  Click="thThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frThirteen__Button" Content=""  Click="frThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saThirteen__Button" Content=""  Click="saThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suThirteen__Button" Content=""  Click="suThirteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Fourteen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Fourteen_Text" Content="14:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Bottom" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moFourteen__Button" Content=""  Click="moFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuFourteen__Button" Content=""  Click="tuFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weFourteen__Button" Content=""  Click="weFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thFourteen__Button" Content=""  Click="thFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frFourteen__Button" Content=""  Click="frFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saFourteen__Button" Content=""  Click="saFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suFourteen__Button" Content=""  Click="suFourteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Fithteen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Fithteen_Text" Content="15:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moFithteen__Button" Content=""  Click="moFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuFithteen__Button" Content=""  Click="tuFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weFithteen__Button" Content=""  Click="weFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thFithteen__Button" Content=""  Click="thFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frFithteen__Button" Content=""  Click="frFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saFithteen__Button" Content=""  Click="saFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suFithteen__Button" Content=""  Click="suFithteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Sixteen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Sixteen_Text" Content="16:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moSixteen__Button" Content=""  Click="moSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuSixteen__Button" Content=""  Click="tuSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weSixteen__Button" Content=""  Click="weSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thSixteen__Button" Content=""  Click="thSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frSixteen__Button" Content=""  Click="frSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saSixteen__Button" Content=""  Click="saSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suSixteen__Button" Content=""  Click="suSixteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Seventeen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Seventeen_Text" Content="17:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moSeventeen__Button" Content=""  Click="moSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuSeventeen__Button" Content=""  Click="tuSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weSeventeen__Button" Content=""  Click="weSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thSeventeen__Button" Content=""  Click="thSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frSeventeen__Button" Content=""  Click="frSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saSeventeen__Button" Content=""  Click="saSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suSeventeen__Button" Content=""  Click="suSeventeen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Eightteen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Eightteen_Text" Content="18:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moEightteen__Button" Content=""  Click="moEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuEightteen__Button" Content=""  Click="tuEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weEightteen__Button" Content=""  Click="weEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thEightteen__Button" Content=""  Click="thEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frEightteen__Button" Content=""  Click="frEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saEightteen__Button" Content=""  Click="saEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suEightteen__Button" Content=""  Click="suEightteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Nineteen_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Nineteen_Text" Content="19:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moNineteen__Button" Content=""  Click="moNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuNineteen__Button" Content=""  Click="tuNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weNineteen__Button" Content=""  Click="weNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thNineteen__Button" Content=""  Click="thNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frNineteen__Button" Content=""  Click="frNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saNineteen__Button" Content=""  Click="saNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suNineteen__Button" Content=""  Click="suNineteen_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="Twenty_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="Twenty_Text" Content="20:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moTwenty__Button" Content=""  Click="moTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuTwenty__Button" Content=""  Click="tuTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weTwenty__Button" Content=""  Click="weTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thTwenty__Button" Content=""  Click="thTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frTwenty__Button" Content=""  Click="frTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saTwenty__Button" Content=""  Click="saTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suTwenty__Button" Content=""  Click="suTwenty_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+            <StackPanel x:Name="TwentyOne_Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="40">
+                <Label x:Name="TwentyOne_Text" Content="21:00" HorizontalAlignment="Left" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Top" BorderBrush="Black" MinHeight="40" FontSize="10" MaxWidth="40"/>
+                <Button x:Name="moTwentyOne__Button" Content=""  Click="moTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="tuTwentyOne__Button" Content=""  Click="tuTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="weTwentyOne__Button" Content=""  Click="weTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40" />
+                <Button x:Name="thTwentyOne__Button" Content=""  Click="thTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="frTwentyOne__Button" Content=""  Click="frTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="saTwentyOne__Button" Content=""  Click="saTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+                <Button x:Name="suTwentyOne__Button" Content=""  Click="suTwentyOne_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="LawnGreen" MinHeight="40"/>
+            </StackPanel>
+        </StackPanel>
+        <Button x:Name="OpenTabs__Button" Click="OpenTabs_Button_Clicked" Width="50" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" BorderBrush="#FF14778D">
+            <StackPanel Height="50" Width="50">
+                <Image x:Name="OpenTabs_Image" Margin="0,5,0,0" Source="/Images/LightTabDrop.png" Height="50" Width="50"/>
+            </StackPanel>
+        </Button>
+        <Label x:Name="Title_Text" Content="My Bookings:" HorizontalAlignment="Center" FontSize="35" Foreground="White" Margin="0,5,0,0" VerticalAlignment="Top"/>
+        <StackPanel  x:Name="Tabs" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,0,0,0" HorizontalAlignment="Left"  Width="150" Visibility="Visible" Background="#FF146374">
+            <Button x:Name="CloseTabs__Button" Click="CloseTabs_Button_Clicked" Width="50" Background="#FF146374" Margin="0,5,0,0" HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" BorderBrush="#FF146374">
+                <StackPanel Height="50" Width="50">
+                    <Image x:Name="CloseTabs_Image" Margin="0,5,0,0" Source="/Images/DarkTabDrop.png" Height="50" Width="50"/>
+                </StackPanel>
+            </Button>
+            <Image x:Name="Logo_Image" Margin="0,20,0,0" Source="/Images/Logo.png"/>
+            <Button x:Name="MyBookings__Button" Content="My Bookings"  Click="MyBookings_Button_Clicked" Width="120" Background="#FFBF9A1B" Margin="0,20,0,0" HorizontalAlignment="Center" />
+            <Button x:Name="MakeBooking__Button" Content="Make Booking"  Click="MakeBooking_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" />
+            <Button x:Name="ViewRooms__Button" Content="View Rooms"  Click="ViewRooms_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" />
+        </StackPanel>
+        <Button x:Name="continue__Button" Content="Confirm: Change "  Click="continue_Button_Clicked" MinWidth="70" Margin="0,0,30,20" HorizontalAlignment="right" VerticalAlignment="Bottom"  Background="#FFE8BC28" MinHeight="40" />
+       
+    </Grid>
+</Page>
