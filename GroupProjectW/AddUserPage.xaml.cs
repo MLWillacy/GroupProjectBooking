@@ -18,24 +18,15 @@ namespace GroupProjectW
     /// <summary>
     /// Interaction logic for ViewRoomsPage.xaml
     /// </summary>
-    public partial class ViewRoomsPage : Page
+    public partial class AddUserPage : Page
     {
         Frame mMain = null;
         User mUser;
-        public ViewRoomsPage(Frame main, User user)
+        public AddUserPage(Frame main, User user)
         {
-            mUser = user;
             InitializeComponent();
-            for (int i = 0; i < mUser.societies.Length; i++)
-            {
-                if (mUser.societies[i] == "UnionStaff")
-                {
-                    RemoveBooking__Button.Visibility = Visibility.Visible;
-                    AddUser__Button.Visibility = Visibility.Visible;
-                }
-            }
             mMain = main;
-            
+            mUser = user;
         }
         private void MyBookings_Button_Clicked(object sender, RoutedEventArgs e)
         {
@@ -46,10 +37,18 @@ namespace GroupProjectW
         {
             mMain.Content = new MakeBookingPage(mMain,mUser);
         }
+        private void RemoveBooking_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mMain.Content = new DeleteBookingsPage(mMain, mUser);
+        }
 
         private void ViewRooms_Button_Clicked(object sender, RoutedEventArgs e)
         {
-
+            mMain.Content = new ViewRoomsPage(mMain, mUser);
+        }
+        private void AddUser_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mMain.Content = new AddUserPage(mMain, mUser);
         }
 
         private void CloseTabs_Button_Clicked(object sender, RoutedEventArgs e)
@@ -66,10 +65,6 @@ namespace GroupProjectW
         {
             mMain.Content = new LoginPage(mMain);
         }
-        private void RemoveBooking_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            mMain.Content = new DeleteBookingsPage(mMain, mUser);
-        }
 
         private void UserIcon_Button_Clicked(object sender, RoutedEventArgs e)
         {
@@ -79,9 +74,6 @@ namespace GroupProjectW
             { Logout__Button.Visibility = Visibility.Visible; }
         }
 
-        private void AddUser_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            mMain.Content = new AddUserPage(mMain,mUser);
-        }
+        
     }
 }

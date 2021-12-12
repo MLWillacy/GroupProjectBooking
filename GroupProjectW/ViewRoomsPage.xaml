@@ -37,6 +37,8 @@
             <Button x:Name="MyBookings__Button" Content="My Bookings"  Click="MyBookings_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,20,0,0" HorizontalAlignment="Center" />
             <Button x:Name="MakeBooking__Button" Content="Make Booking"  Click="MakeBooking_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" />
             <Button x:Name="ViewRooms__Button" Content="View Rooms"  Click="ViewRooms_Button_Clicked" Width="120" Background="#FFBF9A1B" Margin="0,5,0,0" HorizontalAlignment="Center" />
+            <Button x:Name="RemoveBooking__Button" Content="Remove Booking"  Click="RemoveBooking_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" Visibility="Hidden"/>
+            <Button x:Name="AddUser__Button" Content="Add New User"  Click="AddUser_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" Visibility="Hidden"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -29,19 +29,23 @@ namespace GroupProjectW
         int[] endTimeCoord = new int[2];
 
         Frame mMain = null;
+        User mUser;
 
-        public CurrentBookingsPage(Frame main)
+        public CurrentBookingsPage(Frame main, User user)
         {
             InitializeComponent();
             mMain = main;
+            mUser = user;
+            for (int i = 0; i < mUser.societies.Length; i++)
+            {
+                if (mUser.societies[i] == "UnionStaff")
+                {
+                    RemoveBooking__Button.Visibility = Visibility.Visible;
+                    AddUser__Button.Visibility = Visibility.Visible;
+                }
+            }
             updateTimetableUI();
-            bookings[4, 0] = 2;
-            bookings[6, 0] = 2;
-            bookings[7, 0] = 2;
-            bookings[8, 0] = 2;
-            bookings[9, 0] = 2;
-            bookings[10, 0] = 2;
-            bookings[12, 6] = 2;
+            
         }
 
         #region Update Timetable Functions
@@ -1431,18 +1435,28 @@ namespace GroupProjectW
 
         private void MakeBooking_Button_Clicked(object sender, RoutedEventArgs e)
         {
-            mMain.Content = new MakeBookingPage(mMain);
+            mMain.Content = new MakeBookingPage(mMain,mUser);
         }
 
         private void ViewRooms_Button_Clicked(object sender, RoutedEventArgs e)
         {
-            mMain.Content = new ViewRoomsPage(mMain);
+            mMain.Content = new ViewRoomsPage(mMain,mUser);
+        }
+
+        private void RemoveBooking_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mMain.Content = new DeleteBookingsPage(mMain, mUser);
+        }
+        private void AddUser_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mMain.Content = new AddUserPage(mMain, mUser);
         }
 
         private void CloseTabs_Button_Clicked(object sender, RoutedEventArgs e)
         {
             Tabs.Visibility = Visibility.Hidden;
         }
+
 
         private void OpenTabs_Button_Clicked(object sender, RoutedEventArgs e)
         {
@@ -1461,6 +1475,9 @@ namespace GroupProjectW
             else
             { Logout__Button.Visibility = Visibility.Visible; }
         }
+
         #endregion
+
+        
     }
 }

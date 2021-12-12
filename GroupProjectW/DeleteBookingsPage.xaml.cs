@@ -12,24 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.IO;
 
 namespace GroupProjectW
 {
     /// <summary>
-    /// Interaction logic for MakeBookingPage.xaml
+    /// Interaction logic for CurrentBookingsPage.xaml
     /// </summary>
-    public partial class MakeBookingPage : Page
+    public partial class DeleteBookingsPage : Page
     {
-        Frame mMain = null;
-        User mUser;
-
-        //Room Selection Variables
-        int mRoomSelected = 1;
-        bool isRoomSelected = false;
-        int numRooms = 12;
-        int mRoomPage = 1;
-
         //Timetable Variables
         int mWeek = 1;
         int[,] bookings = new int[14, 7]; //states represented by int (0 = available, 1 = currently booking, 2 = unavailable)
@@ -37,203 +27,20 @@ namespace GroupProjectW
         bool endTimeSelected = false;
         int[] startTimeCoord = new int[2];
         int[] endTimeCoord = new int[2];
-        string mDate;
-        string mStartTime;
-        string mEndTime;
 
-        //Confrirmation Sheet Variables
-        string mSociety = "enter";
-        int mNumPeople = 0;
-        string mReason = "enter";
-        bool confirmationValid = false;
+        Frame mMain = null;
+        User mUser;
 
-        //Continue button
-        int continueStep = 0;
-
-
-        public MakeBookingPage(Frame main, User user)
+        public DeleteBookingsPage(Frame main, User user)
         {
-            mUser = user;
-            mMain = main;
-            continueStep = 0;
-
             InitializeComponent();
-            for (int i = 0; i < mUser.societies.Length; i++)
-            {
-                if (mUser.societies[i] == "UnionStaff")
-                {
-                    RemoveBooking__Button.Visibility = Visibility.Visible;
-                    AddUser__Button.Visibility = Visibility.Visible;
-                }
-            }
-
-            initialiseRoomButtons();
-            mRoomSelected = 1;
-            isRoomSelected = false;
-
-            SelectDate_Panel.Visibility = Visibility.Hidden;
+            mMain = main;
+            mUser = user;
             updateTimetableUI();
-            mWeek = 1;
-            startTimeSelected = false;
-            endTimeSelected = false;
-
-            mSociety = "enter";
-            mReason = "enter";
-            mNumPeople = 0;
-
-            finalConfirmation_panel.Visibility = Visibility.Hidden;
+            
         }
 
-        #region Room Select Functions
-        /*********************************************************************************
-         * Room Select Functions
-        *********************************************************************************/
-        private System.Windows.Controls.Label int2RoomLabel(int roomNum)
-        {
-            System.Windows.Controls.Label correspondingLabel = null;
-
-            if (roomNum == 1)
-            { correspondingLabel = Room1_Title; }
-            else if (roomNum == 2)
-            { correspondingLabel = Room2_Title; }
-            else if (roomNum == 3)
-            { correspondingLabel = Room3_Title; }
-            else if (roomNum == 4)
-            { correspondingLabel = Room4_Title; }
-            else if (roomNum == 5)
-            { correspondingLabel = Room5_Title; }
-            else if (roomNum == 6)
-            { correspondingLabel = Room6_Title; }
-            else if (roomNum == 7)
-            { correspondingLabel = Room7_Title; }
-            else if (roomNum == 8)
-            { correspondingLabel = Room8_Title; }
-            else if (roomNum == 9)
-            { correspondingLabel = Room9_Title; }
-            else if (roomNum == 10)
-            { correspondingLabel = Room10_Title; }
-            else if (roomNum == 11)
-            { correspondingLabel = Room11_Title; }
-            else if (roomNum == 12)
-            { correspondingLabel = Room12_Title; }
-
-            return correspondingLabel;
-        }
-        private void initialiseRoomButtons()
-        {
-            for (int i = 1; i < numRooms + 1; i++)
-            {
-                System.Windows.Controls.Label thisRoom = int2RoomLabel(i);
-                thisRoom.Background = Brushes.WhiteSmoke;
-            }
-            updateRoomPage();
-        }
-
-        private void roomSelected(int room)
-        {
-            mRoomSelected = room;
-            initialiseRoomButtons();
-            System.Windows.Controls.Label thisRoom = int2RoomLabel(room);
-            thisRoom.Background = Brushes.LawnGreen;
-            isRoomSelected = true;
-            updateConfirmedRoom();
-        }
-        private void Room1_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(1);
-        }
-        private void Room2_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(2);
-        }
-        private void Room3_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(3);
-        }
-        private void Room4_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(4);
-        }
-        private void Room5_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(5);
-        }
-        private void Room6_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(6);
-        }
-        private void Room7_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(7);
-        }
-        private void Room8_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(8);
-        }
-        private void Room9_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(9);
-        }
-        private void Room10_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(10);
-        }
-        private void Room11_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(11);
-        }
-        private void Room12_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            roomSelected(12);
-        }
-
-        private void initialiseRoomPageIcons()
-        {
-            roomPage1_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOffPageIcon.png", UriKind.Relative));
-            roomPage2_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOffPageIcon.png", UriKind.Relative));
-            roomPage3_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOffPageIcon.png", UriKind.Relative));
-            pickRoom_panel.Visibility = Visibility.Hidden;
-            pickRoom_panel2.Visibility = Visibility.Hidden;
-            pickRoom_panel3.Visibility = Visibility.Hidden;
-        }
-        private void updateRoomPage()
-        {
-            initialiseRoomPageIcons();
-            if (mRoomPage == 1)
-            {
-                roomPage1_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOnPageIcon.png", UriKind.Relative));
-                pickRoom_panel.Visibility = Visibility.Visible;
-            }
-            else if (mRoomPage == 2)
-            {
-                roomPage2_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOnPageIcon.png", UriKind.Relative));
-                pickRoom_panel2.Visibility = Visibility.Visible;
-            }
-            else if (mRoomPage == 3)
-            {
-                roomPage3_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOnPageIcon.png", UriKind.Relative));
-                pickRoom_panel3.Visibility = Visibility.Visible;
-            }
-            roomPageIcons_panel.Visibility = Visibility.Visible;
-        }
-        private void roomPage1_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            mRoomPage = 1;
-            updateRoomPage();
-        }
-        private void roomPage2_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            mRoomPage = 2;
-            updateRoomPage();
-        }
-        private void roomPage3_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            mRoomPage = 3;
-            updateRoomPage();
-        }
-        #endregion
-
-        #region Timetable Functions
+        #region Update Timetable Functions
         /*********************************************************************************
          * Update Timetable Functions
         *********************************************************************************/
@@ -254,6 +61,10 @@ namespace GroupProjectW
                 }
             }
         }
+        private void readBookingsFromDatabase()
+        {
+            //if room booked at time set corresponding bookings int to 2
+        } //******************************************************************************************************************************* needs adding
         private void setTimetableColours()
         {
             for (int i = 0; i < 13; i++)
@@ -273,11 +84,19 @@ namespace GroupProjectW
 
 
         }
-
+        private void changeStartTime(System.Windows.Controls.Button thisButton)
+        {
+            updateTimetableUI();
+            thisButton.Background = Brushes.Yellow;
+            startTimeSelected = true;
+            startTimeCoord = button2BookingsCoord(thisButton);
+            endTimeSelected = false;
+            updateStartTimeText(thisButton);
+        }
 
         private void timetableButtonPressed(System.Windows.Controls.Button thisButton)
         {
-            if (thisButton.Background != Brushes.Red)
+            if (thisButton.Background == Brushes.Red)
             {
                 endTimeCoord = button2BookingsCoord(thisButton);
                 if (endTimeSelected == false && startTimeSelected == true)
@@ -295,20 +114,11 @@ namespace GroupProjectW
                         }
                     }
                     else
-                    { changeStartTime(thisButton); }
+                    { changeStartTime(thisButton);}
                 }
                 else
-                { changeStartTime(thisButton); }
+                {changeStartTime(thisButton); }
             }
-        }
-        private void changeStartTime(System.Windows.Controls.Button thisButton)
-        {
-            updateTimetableUI();
-            thisButton.Background = Brushes.Yellow;
-            startTimeSelected = true;
-            startTimeCoord = button2BookingsCoord(thisButton);
-            endTimeSelected = false;
-            updateStartTimeText(thisButton);
         }
         private void fillBookingGap()
         {
@@ -324,34 +134,13 @@ namespace GroupProjectW
             int day = startTimeCoord[1];
             for (int i = 0; i < endTimeCoord[0] - startTimeCoord[0]; i++)
             {
-                if (BookingsCoord2Button(startTimeCoord[0] + i, day).Background == Brushes.Red)
+                if (BookingsCoord2Button(startTimeCoord[0] + i, day).Background == Brushes.LawnGreen)
                 {
                     clashes = true;
                     break;
                 }
             }
             return clashes;
-        }
-
-        private void readBookingsFromDatabase()
-        {
-            string[] lines = File.ReadAllLines("Rooms/Room" + mRoomSelected + ".txt");
-            int numWeeks = 3; //change after prototype phase
-
-            for (int i = 1; i < numWeeks + 1; i++)
-            {
-                if (i == mWeek)
-                {
-                    int location = (i * 8) + 2;
-                    for (int j = 0; j < 7; j++)
-                    {
-                        string thisLine = lines[location + j];
-                        string[] thisLineSplit = thisLine.Split();
-                        for (int k = 0; k < 12; k++)
-                        { bookings[k,j] = int.Parse(thisLineSplit[k + 1]); }
-                    }
-                }
-            }
         }
 
         /*********************************************************************************
@@ -407,198 +196,33 @@ namespace GroupProjectW
 
             return updatedDay;
         }
+
         #endregion
-
-        #region Booking Sheet Functions
-        /*********************************************************************************
-         * Booking Sheet Functions
-        *********************************************************************************/
-        private void initialiseBookingSheet()
-        {
-            confirmBooking_panel.Visibility = Visibility.Visible;
-            confirmName_label.Content = "firstname surname";
-            confirmDate_label.Content = button2Date(BookingsCoord2Button(startTimeCoord[0], startTimeCoord[1]));
-
-            string endTime = Button2Time(BookingsCoord2Button(endTimeCoord[0], endTimeCoord[1]));
-            int timeToUpdate = int.Parse(endTime.Substring(0, 2));
-            int timeUpdated = timeToUpdate + 1;
-            endTime = timeUpdated.ToString() + endTime.Substring(2);
-
-            confirmTime_label.Content = Button2Time(BookingsCoord2Button(startTimeCoord[0], startTimeCoord[1])) + " - " + endTime;
-
-            confirmSociety_text.Text = mSociety;
-            confirmNumPeople_text.Text = mNumPeople.ToString();
-            confirmReason_text.Text = mReason;
-        }
-        private void confirmReason_text_changed(object sender, TextChangedEventArgs e)
-        {
-            mReason = confirmReason_text.Text;
-        }
-        private void confirmSociety_text_changed(object sender, TextChangedEventArgs e)
-        {
-            mSociety = confirmSociety_text.Text;
-        }
-        private void confirmNumPeople_text_changed(object sender, TextChangedEventArgs e)
-        {
-            try { mNumPeople = int.Parse(confirmNumPeople_text.Text); }
-            catch { confirmationValid = false; }
-        }
-        private void validateConfirmationSheet() //******************************************************************************************************************************* needs adding
-        {
-            confirmationValid = true;
-
-            try { mNumPeople = int.Parse(confirmNumPeople_text.Text); }
-            catch { confirmationValid = false; }
-        }
-        #endregion
-
-        #region Final Confirmation Functions
-        /*********************************************************************************
-        * Final Confirmation Functions
-        *********************************************************************************/
-        private void sendEmail_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            emailSent_label.Visibility = Visibility.Visible;
-        }
-        private void saveToDataBase()
-        {
-            List<string> tempBookings = mUser.bookings; 
-            tempBookings.Add("Room:" + mRoomSelected + " " + mDate + mStartTime + " - " + mEndTime);
-            mUser.bookings = tempBookings;
-
-            string[] lines = File.ReadAllLines("Rooms/Room" + mRoomSelected + ".txt");
-            int numWeeks = 3; //change after prototype phase
-
-            for (int i = 1; i < numWeeks + 1; i++)
-            {
-                if (i == mWeek)
-                {
-                    int location = (i * 8) + 2;
-                    for (int j = 0; j < 7; j++)
-                    {
-                        string thisLine = "";
-                        for (int k = 0; k < 12; k++)
-                        {
-                            if (bookings[k,j] == 1) { bookings[k, j] = 2; }
-                            thisLine = thisLine + " " + bookings[k, j];
-                            
-                        }
-                        lines[location + j] = thisLine;
-                    }
-                }
-            }
-
-            File.WriteAllLines("Rooms/Room" + mRoomSelected + ".txt", lines);
-
-        }
-        #endregion
-
         #region Continue Button Functions
+
         /*********************************************************************************
          * Continue Button Functions
         *********************************************************************************/
 
         private void continue_Button_Clicked(object sender, RoutedEventArgs e)
         {
-            if (isRoomSelected == true)
+            if (endTimeSelected == true)
             {
-                if (continueStep == 0)
-                {
-                    pickRoom_panel.Visibility = Visibility.Hidden;
-                    pickRoom_panel2.Visibility = Visibility.Hidden;
-                    pickRoom_panel3.Visibility = Visibility.Hidden;
-                    roomPageIcons_panel.Visibility = Visibility.Hidden;
-                    SelectDate_Panel.Visibility = Visibility.Visible;
-                    back__Button.Visibility = Visibility.Visible;
-                    updateEndTimeText(BookingsCoord2Button(endTimeCoord[0], endTimeCoord[1]));
-                }
-                else if (endTimeSelected == true)
-                {
-                    if (continueStep == 1)
-                    {
-                        SelectDate_Panel.Visibility = Visibility.Hidden;
-                        saveTempBooking();
-                        continue__Button.Content = "Continue";
-                        initialiseBookingSheet();
-                    }
-                    else if (continueStep == 2)
-                    {
-                        validateConfirmationSheet();
-                        if (confirmationValid)
-                        {
-                            confirmBooking_panel.Visibility = Visibility.Hidden;
-                            confirmBooking_panel.Visibility = Visibility.Hidden;
-                            finalConfirmation_panel.Visibility = Visibility.Visible;
-                            back__Button.Visibility = Visibility.Hidden;
-                            saveToDataBase();
-                            continue__Button.Content = "Create another booking";
-                        }
-                        else
-                        { continueStep--; }
-                    }
-                    else if (continueStep == 3)
-                    {
-                        mMain.Content = new MakeBookingPage(mMain,mUser);
-                    }
-                    if (continueStep < 4)
-                    { continueStep++; }
-                }
-                if (continueStep == 0)
-                { continueStep++; }
-            }
-        }
-        private void back_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-            if (continueStep == 1)
-            {
-                SelectDate_Panel.Visibility = Visibility.Hidden;
-                updateRoomPage();
-                back__Button.Visibility = Visibility.Hidden;
-                updateConfirmedRoom();
-                roomPageIcons_panel.Visibility = Visibility.Visible;
-            }
-            else if (continueStep == 2)
-            {
-                SelectDate_Panel.Visibility = Visibility.Visible;
-                confirmBooking_panel.Visibility = Visibility.Hidden;
-            }
-            else if (continueStep == 3)
-            {
-                initialiseBookingSheet();
-            }
-            if (continueStep != 0)
-            { continueStep--; }
-        }
-
-        private void updateConfirmedRoom()
-        {
-            continue__Button.Content = "Confirm: Room" + mRoomSelected;
-        }
-
-        private void saveTempBooking()
-        {
-            for (int i = 0; i < 11; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (BookingsCoord2Button(i, j).Background == Brushes.Yellow)
-                    {
-                        bookings[i, j] = 1;
-                    }
-                }
+                saveTempBooking();
+                updateTimetableUI();
             }
         }
         private void updateStartTimeText(System.Windows.Controls.Button thisButton)
         {
             if (!startTimeSelected)
             {
-                continue__Button.Content = "Confirm: startTime - endTime";
+                continue__Button.Content = "Cancel: startTime - endTime";
             }
             else
             {
                 string date = button2Date(thisButton);
                 string startTime = Button2Time(thisButton);
-                continue__Button.Content = "Confirm: " + date + " " + startTime + " - endTime";
+                continue__Button.Content = "Cancel: " + date + " " + startTime + " - endTime";
             }
         }
         private void updateEndTimeText(System.Windows.Controls.Button thisButton)
@@ -618,17 +242,26 @@ namespace GroupProjectW
                 int timeToUpdate = int.Parse(endTime.Substring(0, 2));
                 int timeUpdated = timeToUpdate + 1;
                 endTime = timeUpdated.ToString() + endTime.Substring(2);
-                mDate = date;
-                mStartTime = startTime;
-                mEndTime = endTime;
 
-                continue__Button.Content = "Confirm: " + date + " " + startTime + " - " + endTime;
+
+                continue__Button.Content = "Cancel: " + date + " " + startTime + " - " + endTime;
             }
 
         }
+        private void saveTempBooking()
+        {
+            for (int i = 0; i < 11; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (BookingsCoord2Button(i, j).Background == Brushes.Yellow)
+                    {
+                        bookings[i, j] = 0;
+                    }
+                }
+            }
+        }
         #endregion
-
-
 
 
 
@@ -1790,25 +1423,26 @@ namespace GroupProjectW
 
         private void MyBookings_Button_Clicked(object sender, RoutedEventArgs e)
         {
-            mMain.Content = new CurrentBookingsPage(mMain,mUser);
+            mMain.Content = new CurrentBookingsPage(mMain, mUser);
         }
 
         private void MakeBooking_Button_Clicked(object sender, RoutedEventArgs e)
         {
             mMain.Content = new MakeBookingPage(mMain,mUser);
         }
-        private void RemoveBooking_Button_Clicked(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void ViewRooms_Button_Clicked(object sender, RoutedEventArgs e)
         {
             mMain.Content = new ViewRoomsPage(mMain,mUser);
         }
+        private void RemoveBooking_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         private void AddUser_Button_Clicked(object sender, RoutedEventArgs e)
         {
-            mMain.Content = new AddUserPage(mMain,mUser);
+            mMain.Content = new AddUserPage(mMain, mUser);
         }
 
         private void CloseTabs_Button_Clicked(object sender, RoutedEventArgs e)
@@ -1836,14 +1470,6 @@ namespace GroupProjectW
 
         #endregion
 
+
     }
 }
-
-
-
-
-
-
-
-
-

@@ -31,7 +31,9 @@ namespace GroupProjectW
         {
             InitializeComponent();
             Incorrect_Login_Text.Visibility = Visibility.Hidden;
+
             mMain = main;
+
         }
         private void Email_Text_Changed(object sender, TextChangedEventArgs e)
         {
@@ -58,14 +60,15 @@ namespace GroupProjectW
                 if (emailSplit[1] == mEmail && passwordSplit[1] == mPassword)
                 {
                     correctDetails = true;
-                    User mUser = new User(users[i]);
+                    User user = new User(users[i]);
+                    mUser = user;
                     break;
                 }
             }
 
             if(correctDetails)
             {
-                mMain.Content = new CurrentBookingsPage(mMain);
+                mMain.Content = new CurrentBookingsPage(mMain,mUser);
             }
             else
             {

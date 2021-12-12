@@ -7,7 +7,7 @@ using System.IO;
 
 namespace GroupProjectW
 {
-    class User
+    public class User
     {
         string mFilePpath;
         string mEmail;
@@ -42,6 +42,27 @@ namespace GroupProjectW
 
         }
 
+        public List<string> bookings
+        {
+            get
+            {
+                return this.mBookings;
+            }
+            set
+            {
+                this.mBookings = value;
+                mNumBookings++;
+                saveToFile();
+            }
+        }
+
+        public string[] societies
+        {
+            get
+            {
+                return this.mSocieties;
+            }
+        }
         public void saveToFile()
         {
             StreamWriter savefile = new StreamWriter(mFilePpath);
@@ -53,6 +74,7 @@ namespace GroupProjectW
                 societySav = societySav + " " + mSocieties[i];
             }
             savefile.WriteLine(societySav);
+            savefile.WriteLine("NumBookings:" + mNumBookings);
             savefile.WriteLine("Bookings:");
             for (int j = 0; j < mNumBookings; j++)
             {
