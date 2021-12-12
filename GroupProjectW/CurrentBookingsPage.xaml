@@ -39,6 +39,6 @@
             <Button x:Name="RemoveBooking__Button" Content="Remove Booking"  Click="RemoveBooking_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" Visibility="Hidden"/>
             <Button x:Name="AddUser__Button" Content="Add New User"  Click="AddUser_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" Visibility="Hidden"/>
         </StackPanel>
-        
+        <Label x:Name="Bookings_Text" Content="Bookings:" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightGray" MinHeight="300" MinWidth="300"/>
     </Grid>
 </Page>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace GroupProjectW
 {
@@ -22,12 +23,19 @@ namespace GroupProjectW
     {
         Frame mMain = null;
         User mUser;
+
+        string mEmail;
+        string mPassword;
+        string[] mSocieties;
+
         public AddUserPage(Frame main, User user)
         {
             InitializeComponent();
             mMain = main;
             mUser = user;
         }
+
+        #region Tab Buttons
         private void MyBookings_Button_Clicked(object sender, RoutedEventArgs e)
         {
             mMain.Content = new CurrentBookingsPage(mMain,mUser);
@@ -73,7 +81,60 @@ namespace GroupProjectW
             else
             { Logout__Button.Visibility = Visibility.Visible; }
         }
+        #endregion
 
-        
+        private void Email_Text_Changed(object sender, TextChangedEventArgs e)
+        {
+            mEmail = Email_Textbox.Text;
+            created_text.Visibility = Visibility.Hidden;
+        }
+
+        private void Password_Text_Changed(object sender, TextChangedEventArgs e)
+        {
+            mPassword = Password_Textbox.Text;
+            created_text.Visibility = Visibility.Hidden;
+        }
+
+        private void Society_Text_Changed(object sender, TextChangedEventArgs e)
+        {
+            string societies = Society_Textbox.Text;
+            mSocieties = societies.Split(',');
+            created_text.Visibility = Visibility.Hidden;
+        }
+
+        private void Login_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            string[] emailSplit = mEmail.Split('@');
+            string fileName = "Users/" + emailSplit[0] + ".txt";
+            if (!File.Exists(fileName))
+            {
+                var myFile = File.Create(fileName);
+                myFile.Close();
+                saveFile(fileName);
+                Email_Textbox.Text = "";
+                Password_Textbox.Text = "";
+                Society_Textbox.Text = "";
+                created_text.Visibility = Visibility.Visible;
+
+            }
+        }
+
+        private void saveFile(string fileName)
+        {
+            StreamWriter savefile = new StreamWriter(fileName);
+            savefile.WriteLine("Email:" + mEmail);
+            savefile.WriteLine("Password:" + mPassword);
+            string societySav = "Societies:";
+            for (int i = 0; i < mSocieties.Length; i++)
+            {
+                societySav = societySav + " " + mSocieties[i];
+            }
+            savefile.WriteLine(societySav);
+            savefile.WriteLine("NumBookings:0");
+            savefile.WriteLine("Bookings:");
+
+            savefile.Close();
+            
+        }
     }
 }

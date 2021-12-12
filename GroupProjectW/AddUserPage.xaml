@@ -40,5 +40,23 @@
             <Button x:Name="RemoveBooking__Button" Content="Remove Booking"  Click="RemoveBooking_Button_Clicked" Width="120" Background="#FFEAEAEA" Margin="0,5,0,0" HorizontalAlignment="Center" Visibility="Visible"/>
             <Button x:Name="AddUser__Button" Content="Add New User"  Click="AddUser_Button_Clicked" Width="120" Background="#FFBF9A1B" Margin="0,5,0,0" HorizontalAlignment="Center" Visibility="Visible"/>
         </StackPanel>
+        <StackPanel x:Name="CreateUserPanel" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Background="WhiteSmoke" MinHeight="300">
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Email:" FontSize="20" Foreground="Black" HorizontalAlignment="Center"/>
+                <TextBox x:Name="Email_Textbox" TextWrapping="Wrap" Text="" Margin="44,0,0,0" Background="LightGray" TextChanged="Email_Text_Changed" MinWidth="150" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Password:" FontSize="20" Foreground="Black"/>
+                <TextBox x:Name="Password_Textbox" TextWrapping="Wrap" Text="" Margin="10,0,0,0" Background="LightGray" TextChanged="Password_Text_Changed" MinWidth="150" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Societies:" FontSize="20" Foreground="Black"/>
+                <TextBox x:Name="Society_Textbox" TextWrapping="Wrap" Text="" Margin="10,0,0,0" Background="LightGray" TextChanged="Society_Text_Changed" MinWidth="150" FontSize="20"/>
+            </StackPanel>
+            <Label Content="Please put a comma between each society" HorizontalAlignment="Center"/>
+            <Button x:Name="CreateUser_Button" Content="Create User"  Click="Login_Button_Clicked"  Background="#FFEAEAEA" Margin="10,5,10,5" FontSize="20"/>
+            <Label x:Name="created_text" Content="User created" HorizontalAlignment="Center" Foreground="Green" Visibility="Hidden"/>
+        </StackPanel>
+
     </Grid>
 </Page>
