@@ -41,5 +41,27 @@ namespace GroupProjectW
             }
 
         }
+
+        public void saveToFile()
+        {
+            StreamWriter savefile = new StreamWriter(mFilePpath);
+            savefile.WriteLine("Email:" + mEmail);
+            savefile.WriteLine("Password:" + mPassword);
+            string societySav = "Societies:";
+            for (int i = 0; i < mSocieties.Length; i++)
+            {
+                societySav = societySav + " " + mSocieties[i];
+            }
+            savefile.WriteLine(societySav);
+            savefile.WriteLine("Bookings:");
+            for (int j = 0; j < mNumBookings; j++)
+            {
+                savefile.WriteLine(mBookings[j]);
+            }
+
+            savefile.Close();
+
+        }
+
     }
 }
