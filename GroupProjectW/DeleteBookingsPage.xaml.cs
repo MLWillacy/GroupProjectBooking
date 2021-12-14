@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace GroupProjectW
 {
@@ -20,6 +21,12 @@ namespace GroupProjectW
     /// </summary>
     public partial class DeleteBookingsPage : Page
     {
+        //Room Selection Variables
+        int mRoomSelected = 1;
+        bool isRoomSelected = false;
+        int numRooms = 12;
+        int mRoomPage = 1;
+
         //Timetable Variables
         int mWeek = 1;
         int[,] bookings = new int[14, 7]; //states represented by int (0 = available, 1 = currently booking, 2 = unavailable)
@@ -44,6 +51,12 @@ namespace GroupProjectW
         /*********************************************************************************
          * Update Timetable Functions
         *********************************************************************************/
+
+        public void loadRoomTimetable()
+        {
+            SelectDate_Panel.Visibility = Visibility.Visible;
+            updateTimetableUI();
+        }
         private void updateTimetableUI()
         {
             initialiseTimetable();
@@ -63,8 +76,24 @@ namespace GroupProjectW
         }
         private void readBookingsFromDatabase()
         {
-            //if room booked at time set corresponding bookings int to 2
-        } //******************************************************************************************************************************* needs adding
+            string[] lines = File.ReadAllLines("Rooms/Room" + mRoomSelected + ".txt");
+            int numWeeks = 3; //change after prototype phase
+
+            for (int i = 1; i < numWeeks + 1; i++)
+            {
+                if (i == mWeek)
+                {
+                    int location = ((i - 1) * 8) + 2;
+                    for (int j = 0; j < 7; j++)
+                    {
+                        string thisLine = lines[location + j];
+                        string[] thisLineSplit = thisLine.Split();
+                        for (int k = 0; k < 12; k++)
+                        { bookings[k, j] = int.Parse(thisLineSplit[k + 1]); }
+                    }
+                }
+            }
+        }
         private void setTimetableColours()
         {
             for (int i = 0; i < 13; i++)
@@ -158,8 +187,9 @@ namespace GroupProjectW
                 Saturday_Text.Content = updateWeek(Saturday_Text.Content.ToString(), true);
                 Sunday_Text.Content = updateWeek(Sunday_Text.Content.ToString(), true);
 
+                mWeek++;
                 updateTimetableUI();
-                mWeek = mWeek + 1;
+                
             }
         }
         private void timetableBack_Button_Clicked(object sender, RoutedEventArgs e)
@@ -174,8 +204,9 @@ namespace GroupProjectW
                 Saturday_Text.Content = updateWeek(Saturday_Text.Content.ToString(), false);
                 Sunday_Text.Content = updateWeek(Sunday_Text.Content.ToString(), false);
 
-                updateTimetableUI();
                 mWeek--;
+                updateTimetableUI();
+                
             }
         }
 
@@ -250,19 +281,188 @@ namespace GroupProjectW
         }
         private void saveTempBooking()
         {
-            for (int i = 0; i < 11; i++)
+
+            string[] lines = File.ReadAllLines("Rooms/Room" + mRoomSelected + ".txt");
+            int numWeeks = 3; //change after prototype phase
+
+            for (int i = 1; i < numWeeks + 1; i++)
             {
-                for (int j = 0; j < 6; j++)
+                if (i == mWeek)
                 {
-                    if (BookingsCoord2Button(i, j).Background == Brushes.Yellow)
+                    int location = ((i-1) * 8) + 2;
+                    for (int j = 0; j < 7; j++)
                     {
-                        bookings[i, j] = 0;
+                        string thisLine = "";
+                        for (int k = 0; k < 12; k++)
+                        {
+                            if (bookings[k, j] == 2) { bookings[k, j] = 0; }
+                            thisLine = thisLine + " " + bookings[k, j];
+
+                        }
+                        lines[location + j] = thisLine;
                     }
                 }
             }
+
+            File.WriteAllLines("Rooms/Room" + mRoomSelected + ".txt", lines);
+        }
+        #endregion
+        #region Room Select Functions
+        /*********************************************************************************
+         * Room Select Functions
+        *********************************************************************************/
+        private System.Windows.Controls.Label int2RoomLabel(int roomNum)
+        {
+            System.Windows.Controls.Label correspondingLabel = null;
+
+            if (roomNum == 1)
+            { correspondingLabel = Room1_Title; }
+            else if (roomNum == 2)
+            { correspondingLabel = Room2_Title; }
+            else if (roomNum == 3)
+            { correspondingLabel = Room3_Title; }
+            else if (roomNum == 4)
+            { correspondingLabel = Room4_Title; }
+            else if (roomNum == 5)
+            { correspondingLabel = Room5_Title; }
+            else if (roomNum == 6)
+            { correspondingLabel = Room6_Title; }
+            else if (roomNum == 7)
+            { correspondingLabel = Room7_Title; }
+            else if (roomNum == 8)
+            { correspondingLabel = Room8_Title; }
+            else if (roomNum == 9)
+            { correspondingLabel = Room9_Title; }
+            else if (roomNum == 10)
+            { correspondingLabel = Room10_Title; }
+            else if (roomNum == 11)
+            { correspondingLabel = Room11_Title; }
+            else if (roomNum == 12)
+            { correspondingLabel = Room12_Title; }
+
+            return correspondingLabel;
+        }
+
+        private void initialiseRoomButtons()
+        {
+            for (int i = 1; i < numRooms + 1; i++)
+            {
+                System.Windows.Controls.Label thisRoom = int2RoomLabel(i);
+                thisRoom.Background = Brushes.WhiteSmoke;
+            }
+            updateRoomPage();
+        }
+
+        private void roomSelected(int room)
+        {
+            mRoomSelected = room;
+            initialiseRoomButtons();
+            System.Windows.Controls.Label thisRoom = int2RoomLabel(room);
+            thisRoom.Background = Brushes.LawnGreen;
+            isRoomSelected = true;
+            loadRoomTimetable();
+            back__Button.Visibility = Visibility.Visible;
+        }
+        private void Room1_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(1);
+        }
+        private void Room2_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(2);
+        }
+        private void Room3_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(3);
+        }
+        private void Room4_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(4);
+        }
+        private void Room5_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(5);
+        }
+        private void Room6_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(6);
+        }
+        private void Room7_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(7);
+        }
+        private void Room8_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(8);
+        }
+        private void Room9_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(9);
+        }
+        private void Room10_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(10);
+        }
+        private void Room11_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(11);
+        }
+        private void Room12_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            roomSelected(12);
+        }
+
+        private void initialiseRoomPageIcons()
+        {
+            roomPage1_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOffPageIcon.png", UriKind.Relative));
+            roomPage2_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOffPageIcon.png", UriKind.Relative));
+            roomPage3_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOffPageIcon.png", UriKind.Relative));
+            pickRoom_panel.Visibility = Visibility.Hidden;
+            pickRoom_panel2.Visibility = Visibility.Hidden;
+            pickRoom_panel3.Visibility = Visibility.Hidden;
+        }
+        private void updateRoomPage()
+        {
+            initialiseRoomPageIcons();
+            if (mRoomPage == 1)
+            {
+                roomPage1_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOnPageIcon.png", UriKind.Relative));
+                pickRoom_panel.Visibility = Visibility.Visible;
+            }
+            else if (mRoomPage == 2)
+            {
+                roomPage2_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOnPageIcon.png", UriKind.Relative));
+                pickRoom_panel2.Visibility = Visibility.Visible;
+            }
+            else if (mRoomPage == 3)
+            {
+                roomPage3_Image.Source = new BitmapImage(new Uri(@"/Images/RoomsOnPageIcon.png", UriKind.Relative));
+                pickRoom_panel3.Visibility = Visibility.Visible;
+            }
+            roomPageIcons_panel.Visibility = Visibility.Visible;
+        }
+        private void roomPage1_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mRoomPage = 1;
+            updateRoomPage();
+        }
+        private void roomPage2_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mRoomPage = 2;
+            updateRoomPage();
+        }
+        private void roomPage3_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            mRoomPage = 3;
+            updateRoomPage();
         }
         #endregion
 
+        private void back_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            back__Button.Visibility = Visibility.Hidden;
+            SelectDate_Panel.Visibility = Visibility.Hidden;
+        }
 
 
 

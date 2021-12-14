@@ -342,7 +342,7 @@ namespace GroupProjectW
             {
                 if (i == mWeek)
                 {
-                    int location = (i * 8) + 2;
+                    int location = ((i-1) * 8) + 2;
                     for (int j = 0; j < 7; j++)
                     {
                         string thisLine = lines[location + j];
@@ -369,8 +369,9 @@ namespace GroupProjectW
                 Saturday_Text.Content = updateWeek(Saturday_Text.Content.ToString(), true);
                 Sunday_Text.Content = updateWeek(Sunday_Text.Content.ToString(), true);
 
+                mWeek++;
                 updateTimetableUI();
-                mWeek = mWeek + 1;
+                
             }
         }
         private void timetableBack_Button_Clicked(object sender, RoutedEventArgs e)
@@ -385,8 +386,9 @@ namespace GroupProjectW
                 Saturday_Text.Content = updateWeek(Saturday_Text.Content.ToString(), false);
                 Sunday_Text.Content = updateWeek(Sunday_Text.Content.ToString(), false);
 
-                updateTimetableUI();
                 mWeek--;
+                updateTimetableUI();
+                
             }
         }
 

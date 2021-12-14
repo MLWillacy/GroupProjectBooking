@@ -20,7 +20,186 @@
             </Button>
             <Button x:Name="Logout__Button" Content="Logout"  Click="Logout_Button_Clicked" MinWidth="70" Background="WhiteSmoke" Margin="0,-5,0,0" HorizontalAlignment="Center" Visibility="Hidden" />
         </StackPanel>
-        <StackPanel x:Name="SelectDate_Panel" VerticalAlignment="Center" HorizontalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Visible">
+        <StackPanel x:Name="pickRoom_panel" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal"  Visibility="Visible">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button x:Name="Room1__Button" Click="Room1_Button_Clicked" Background="WhiteSmoke" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room1_Title" Content="Room1" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room1_Capacity" Content="Capacity: 60" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room1_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room1Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room1Feature2_Image" Margin="0,0,0,0" Source="/Images/projectorIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room1Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Room2__Button" Click="Room2_Button_Clicked" Background="WhiteSmoke" Margin="0,20,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room2_Title" Content="Room2" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room2_Capacity" Content="Capacity: 10" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room2_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room2Feature1_Image" Margin="0,0,0,0"  MinHeight="50" Width="50"/>
+                            <Image x:Name="Room2Feature2_Image" Margin="0,0,0,0"  MinHeight="50" Width="50"/>
+                            <Image x:Name="Room2Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
+                <Button x:Name="Room3__Button" Click="Room3_Button_Clicked" Background="WhiteSmoke" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room3_Title" Content="Room3" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room3_Capacity" Content="Capacity: 15" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room3_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room3Feature1_Image" Margin="0,0,0,0" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room3Feature2_Image" Margin="0,0,0,0" Source="/Images/projectorIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room3Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Room4__Button" Click="Room4_Button_Clicked" Background="WhiteSmoke" Margin="0,20,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room4_Title" Content="Room4" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room4_Capacity" Content="Capacity: 10" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room4_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room4Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room4Feature2_Image" Margin="0,0,0,0" Source="/Images/ProjectorIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room4Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="pickRoom_panel2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Visibility="Hidden">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button x:Name="Room5__Button" Click="Room5_Button_Clicked" Background="WhiteSmoke" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room5_Title" Content="Room5" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room5_Capacity" Content="Capacity: 5" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room5_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room5Feature1_Image" Margin="0,0,0,0"  MinHeight="50" Width="50"/>
+                            <Image x:Name="Room5Feature2_Image" Margin="0,0,0,0"  MinHeight="50" Width="50"/>
+                            <Image x:Name="Room5Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Room6__Button" Click="Room6_Button_Clicked" Background="WhiteSmoke" Margin="0,20,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room6_Title" Content="Room6" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room6_Capacity" Content="Capacity: 20" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room6_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room6Feature1_Image" Margin="0,0,0,0" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room6Feature2_Image" Margin="0,0,0,0" Source="/Images/ProjectorIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room6Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
+                <Button x:Name="Room7__Button" Click="Room7_Button_Clicked" Background="WhiteSmoke" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room7_Title" Content="Room7" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room7_Capacity" Content="Capacity: 5" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room7_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room7Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room7Feature2_Image" Margin="0,0,0,0"  MinHeight="50" Width="50"/>
+                            <Image x:Name="Room7Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Room8__Button" Click="Room8_Button_Clicked" Background="WhiteSmoke" Margin="0,20,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room8_Title" Content="Room8" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room8_Capacity" Content="Capacity: 15" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room8_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room8Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room8Feature2_Image" Margin="0,0,0,0" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room8Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="pickRoom_panel3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Visibility="Hidden">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button x:Name="Room9__Button" Click="Room9_Button_Clicked" Background="WhiteSmoke" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room9_Title" Content="Room9" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room9_Capacity" Content="Capacity: 20" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room9_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room9Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room9Feature2_Image" Margin="0,0,0,0" Source="/Images/ProjectorIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room9Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Room10__Button" Click="Room10_Button_Clicked" Background="WhiteSmoke" Margin="0,20,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room10_Title" Content="Room10" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room10_Capacity" Content="Capacity: 30" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room10_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room10Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room10Feature2_Image" Margin="0,0,0,0" Source="/Images/ProjectorIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room10Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
+                <Button x:Name="Room11__Button" Click="Room11_Button_Clicked" Background="WhiteSmoke" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room11_Title" Content="Room11" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room11_Capacity" Content="Capacity: 5" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room11_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room11Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room11Feature2_Image" Margin="0,0,0,0"  MinHeight="50" Width="50"/>
+                            <Image x:Name="Room11Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Room12__Button" Click="Room12_Button_Clicked" Background="WhiteSmoke" Margin="0,20,0,0" HorizontalAlignment="Left" MinWidth="150" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                    <StackPanel>
+                        <Label x:Name="Room12_Title" Content="Room12" FontSize="30" Background="WhiteSmoke"/>
+                        <Label x:Name="Room12_Capacity" Content="Capacity: 5" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="10" >
+                            <Label x:Name="Room12_Features_Text" Content="Features:" FontSize="15"/>
+                            <Image x:Name="Room12Feature1_Image" Margin="0,0,0,0" Source="/Images/AccessIcon.png" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room12Feature2_Image" Margin="0,0,0,0" MinHeight="50" Width="50"/>
+                            <Image x:Name="Room12Feature3_Image" Margin="0,0,0,0" Source="/Images/PlugsIcon.png" MinHeight="50" Width="50"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="roomPageIcons_panel" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,20">
+            <Button x:Name="roomPage1__Button" Click="roomPage1_Button_Clicked" Width="50" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                <StackPanel Height="50" Width="50">
+                    <Image x:Name="roomPage1_Image" Margin="0,5,0,0" Source="/Images/RoomsOffPageIcon.png" Height="50" Width="50"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="roomPage2__Button" Click="roomPage2_Button_Clicked" Width="50" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                <StackPanel Height="50" Width="50">
+                    <Image x:Name="roomPage2_Image" Margin="0,5,0,0" Source="/Images/RoomsOffPageIcon.png" Height="50" Width="50"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="roomPage3__Button" Click="roomPage3_Button_Clicked" Width="50" Background="#FF14778D" Margin="0,5,0,0" HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" BorderBrush="#FF14778D">
+                <StackPanel Height="50" Width="50">
+                    <Image x:Name="roomPage3_Image" Margin="0,5,0,0" Source="/Images/RoomsOffPageIcon.png" Height="50" Width="50"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel x:Name="SelectDate_Panel" VerticalAlignment="Center" HorizontalAlignment="Center" Background="WhiteSmoke" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Hidden">
             <StackPanel x:Name="Dates" HorizontalAlignment="Left" VerticalAlignment="Center" Background="WhiteSmoke" MaxWidth="145">
                 <StackPanel x:Name="Corner_Buttons" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" MinHeight="40" Orientation="Horizontal">
                     <Button x:Name="TimetableBack__Button" Content="back"  Click="timetableBack_Button_Clicked" MinWidth="70" Margin="0,0,0,0" HorizontalAlignment="left"  Background="Gray" MinHeight="40" />
@@ -171,6 +350,7 @@
             </StackPanel>
         </Button>
         <Label x:Name="Title_Text" Content="Delete Bookings:" HorizontalAlignment="Center" FontSize="35" Foreground="White" Margin="0,5,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="back__Button" Content="back"  Click="back_Button_Clicked" MinWidth="70" Margin="100,0,0,20" HorizontalAlignment="left" VerticalAlignment="Bottom"  Background="#FFE8BC28" MinHeight="40" Visibility="Hidden" />
         <StackPanel  x:Name="Tabs" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,0,0,0" HorizontalAlignment="Left"  Width="150" Visibility="Visible" Background="#FF146374">
             <Button x:Name="CloseTabs__Button" Click="CloseTabs_Button_Clicked" Width="50" Background="#FF146374" Margin="0,5,0,0" HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" BorderBrush="#FF146374">
                 <StackPanel Height="50" Width="50">
